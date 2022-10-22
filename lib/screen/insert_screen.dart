@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:note2/connections/database_connection.dart';
+import 'package:note2/main.dart';
 import 'package:note2/model/model_note.dart';
 
 class InsertPages extends StatefulWidget {
@@ -52,7 +53,12 @@ class _InsertPagesState extends State<InsertPages> {
                       id: Random().nextInt(100),
                       head: _inserthead.text,
                       body: _insertbody.text))
-                  .whenComplete(() => _onRefresh());
+                  .whenComplete(() => Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MyApp(),
+                      ),
+                      (route) => false));
             },
           )
         ],
